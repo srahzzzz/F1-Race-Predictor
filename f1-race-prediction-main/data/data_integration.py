@@ -1,8 +1,31 @@
 """
-Real F1 Data Integration using Fast-F1 library.
+data_integration.py - Real F1 Data Integration via Fast-F1 API
 
-This module fetches real Formula 1 data from the official F1 API using Fast-F1
-and integrates it with the simulation to provide more realistic race predictions.
+This module provides integration with the Fast-F1 library to fetch and process
+real Formula 1 performance data from official F1 sources. It enhances the
+simulation with historical race data, driver performance metrics, and team statistics.
+
+Key Components:
+- RealDataProvider: Fetches real F1 data from Fast-F1 API
+- RealDataEnhancer: Enhances simulation drivers/teams with real performance data
+- Track-specific insights: Historical lap times and weather data per circuit
+- Driver/team performance calculations based on recent race results
+
+Data Sources:
+- Fast-F1 API for historical race data (2022-2024 seasons)
+- Driver performance metrics from recent races
+- Team reliability and performance statistics
+- Track-specific lap time and weather history
+
+Integration:
+- Used by app.py to enhance drivers and teams before simulation
+- Provides track insights to advanced_race_model.py
+- Suppresses verbose Fast-F1 logging for clean console output
+
+Special Features:
+- Automatic track name aliasing for reliable data matching
+- Weighted blending of real data (70%) with fictional data (30%)
+- Silent error handling when Fast-F1 data is unavailable
 """
 
 import fastf1

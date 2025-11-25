@@ -1,8 +1,35 @@
 """
-Minimal visualization helpers for displaying race results in the console.
+race_visualization.py - Console Output Formatting and Display
+
+This module provides formatted table displays for race results, qualifying positions,
+and podium finishers. It uses tabulate for table formatting and colorama for
+colored terminal output to create visually appealing result displays.
+
+Key Components:
+- display_qualifying_results(): Shows grid positions in formatted table
+- display_race_results(): Displays final race results with positions, times, points
+- display_podium(): Shows top 3 finishers with race name and year
+- format_race_time(): Converts seconds to readable MM:SS.mmm format
+
+Display Features:
+- Color-coded headers (Yellow for qualifying, Green for race, Magenta for podium)
+- Formatted tables using pipe-style formatting
+- Time formatting in minutes:seconds.milliseconds
+- Status indicators for DNF/DSQ drivers
+
+Integration:
+- Called by app.py after race simulation to display results
+- Uses colorama for cross-platform colored output
+- Formats data from base_race_model.DriverRaceResult objects
+
+Special Features:
+- Podium title includes race name and year (e.g., "PODIUM FOR QATAR 2025")
+- Clean table formatting with consistent column widths
+- Handles both finished drivers and DNF/DSQ statuses
 """
 
 from tabulate import tabulate as tabulate_func
+
 from colorama import init, Fore, Style
 
 # Initialize colorama for cross-platform colored terminal output

@@ -1,6 +1,30 @@
 """
-Module containing data for F1 2025 tracks with their attributes and statistics.
+track_data.py - Circuit and Track Definitions
+
+This module defines the Track class and contains the complete 2025 Formula 1
+calendar with all circuit characteristics and track-specific attributes.
+
+Key Components:
+- Track class: Represents an F1 circuit with physical and racing characteristics
+- Track attributes: Length, corners, downforce requirements, tire wear, overtaking difficulty
+- Complete 2025 F1 calendar with all 24 races
+- Helper functions to retrieve tracks by name or get calendar in date order
+
+Track Attributes:
+- length_km: Circuit length in kilometers
+- laps: Number of laps in the race
+- corners: Number of corners on the circuit
+- downforce_level: Required downforce level (1-10 scale)
+- tyre_wear: Tire degradation rate (1-10 scale)
+- overtaking_difficulty: Difficulty to overtake (1-10 scale)
+- braking_severity: Braking intensity required (1-10 scale)
+
+Integration:
+- Used by simulation models to calculate track-specific performance
+- Referenced by app.py for track selection and race setup
+- Used by weather_model.py for location-based weather generation
 """
+
 
 class Track:
     def __init__(self, name, country, city, length_km, laps, corners, 

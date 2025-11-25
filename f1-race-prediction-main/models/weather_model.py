@@ -1,9 +1,35 @@
 """
-Module for simulating weather conditions for Formula 1 races.
-Weather has significant impact on race strategy and performance.
+weather_model.py - Weather Condition Generation and Simulation
+
+This module generates realistic weather conditions for Formula 1 races based on
+track location, season, and historical weather patterns. Weather significantly
+impacts race strategy, tire selection, and driver performance.
+
+Key Components:
+- WeatherCondition dataclass: Represents weather state (dry/wet/mixed, temperature, humidity)
+- generate_weather() function: Creates realistic weather based on track and date
+- Location-based adjustments: Different probabilities for different regions
+- Season-based temperature and rain probability calculations
+
+Weather Generation Logic:
+- Location-based probabilities: Arid regions (Qatar, UAE) have 95% dry probability
+- Season adjustments: Spring/autumn months have higher rain probability
+- Temperature calculations: Based on month, location, and seasonal patterns
+- Rain intensity: Scales from 0 (dry) to 10 (monsoon) for wet conditions
+
+Integration:
+- Used by app.py to automatically generate weather for each race
+- Referenced by base_race_model.py for weather impact calculations
+- Uses track_data.py for location and date information
+
+Special Features:
+- Arid track handling: Qatar, Bahrain, Saudi Arabia, UAE, Las Vegas forced to 95% dry
+- Losail-specific: 95% dry, 3% wet, 2% mixed (extremely rare rain)
+- Automatic month extraction from track date strings
 """
 
 import random
+
 from dataclasses import dataclass
 
 

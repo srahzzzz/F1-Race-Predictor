@@ -1,6 +1,29 @@
 """
-Module containing data for F1 2025 teams with their attributes and statistics.
+team_data.py - Team and Car Performance Data
+
+This module defines the Team class and contains all 2025 Formula 1 teams with
+their car performance characteristics and team attributes.
+
+Key Components:
+- Team class: Represents an F1 team with car performance metrics
+- Team attributes: Performance, reliability, aerodynamics, power, pit efficiency
+- Complete 2025 F1 team roster with realistic car ratings
+- Helper functions to retrieve teams by name, engine manufacturer
+
+Team Attributes:
+- performance: Overall car performance rating (1-100)
+- reliability: Car reliability and durability (1-100)
+- aerodynamics: Aerodynamic efficiency rating (1-100)
+- power: Engine power output rating (1-100)
+- pit_efficiency: Pit stop speed and efficiency (1-100)
+- development_rate: In-season development capability (1-100)
+
+Integration:
+- Used by simulation models to calculate car performance impact
+- Referenced by app.py for race simulation setup
+- Enhanced by data_integration.py with real F1 team performance data
 """
+
 
 class Team:
     def __init__(self, name, constructor, engine, performance, reliability, 

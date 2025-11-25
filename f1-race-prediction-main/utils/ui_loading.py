@@ -1,8 +1,32 @@
 """
-Loading screen utilities for the F1 Race Prediction Simulator.
+ui_loading.py - Loading Animations and Logging Suppression
 
-Provides clean loading animations and progress indicators while
-suppressing verbose logging output from Fast-F1 library.
+This module provides utilities for managing console output during data loading
+operations. It suppresses verbose Fast-F1 library logging and provides clean
+loading animations and progress indicators for a better user experience.
+
+Key Components:
+- suppress_fastf1_logging(): Context manager to silence Fast-F1 logs
+- setup_global_logging_suppression(): Global Fast-F1 logger suppression
+- loading_with_animation(): Silent function execution with logging suppression
+- LoadingAnimation class: Rotating spinner animation (currently unused)
+
+Logging Suppression:
+- Suppresses all Fast-F1 related loggers (fastf1, req, core, ergast)
+- Filters Fast-F1 warnings and deprecation messages
+- Sets logger levels to CRITICAL to prevent output
+- Restores original logging state after operations complete
+
+Integration:
+- Used by app.py to suppress Fast-F1 logging during data loading
+- Referenced by data_integration.py for silent API calls
+- Called at application startup to set global logging levels
+
+Special Features:
+- Comprehensive Fast-F1 logger suppression (10+ logger names)
+- Warning filter for common Fast-F1 messages
+- Silent operation mode: No spinner, no output during loading
+- Context manager pattern for safe logging state restoration
 """
 
 import time
@@ -10,6 +34,7 @@ import sys
 import threading
 import logging
 import warnings
+
 from contextlib import contextmanager
 
 

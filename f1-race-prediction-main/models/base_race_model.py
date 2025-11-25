@@ -1,11 +1,37 @@
 """
-Core race simulation model for Formula 1 race predictions.
-This model simulates race outcomes based on driver skills, car performance, track characteristics,
-weather conditions, and various random events that can happen during a race.
+base_race_model.py - Core Race Simulation Engine
+
+This module contains the fundamental race simulation logic that calculates
+qualifying positions, race lap times, incidents, and final race results based
+on driver skills, car performance, track characteristics, and weather conditions.
+
+Key Components:
+- RaceSimulator class: Main simulation engine for qualifying and race
+- DriverRaceResult dataclass: Stores final race result for each driver
+- RaceIncident enum: Types of incidents (mechanical, collision, puncture, etc.)
+- Lap time calculations with driver, car, track, and weather factors
+
+Simulation Logic:
+- Qualifying: Calculates grid positions based on driver skill and car performance
+- Race: Simulates lap-by-lap performance with tire degradation and incidents
+- Max Verstappen bias: Significant performance boost reflecting WDC status
+- Incident simulation: Random events (DNFs, penalties, mechanical failures)
+
+Integration:
+- Extended by advanced_race_model.py for real data integration
+- Used by app.py to run complete race simulations
+- References driver_data, team_data, and track_data for attributes
+
+Special Features:
+- Strong Max Verstappen bias in qualifying (-2.5s) and race pace (-1.8s per lap)
+- Position boost ensuring Max finishes 1st if he completes the race
+- 70% reduction in incident probability for Max Verstappen
 """
 
 import random
+
 import numpy as np
+
 from dataclasses import dataclass
 from enum import Enum
 

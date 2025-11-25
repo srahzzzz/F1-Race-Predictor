@@ -1,15 +1,41 @@
 """
-Enhanced Race Model with Real F1 Data Integration.
+advanced_race_model.py - Enhanced Simulation with Real F1 Data
 
-This enhanced model uses real F1 performance data to improve the accuracy
-of race predictions and provide more realistic results.
+This module extends the base race simulation model by integrating real Formula 1
+performance data to create more accurate and realistic race predictions. It blends
+historical F1 data with the base simulation algorithms.
+
+Key Components:
+- EnhancedRaceSimulator class: Extends RaceSimulator with real data integration
+- Real data adjustments: Modifies lap times based on historical performance
+- Track-specific insights: Uses real lap times from previous races at each circuit
+- Post-race adjustments: Applies real driver/team performance patterns
+
+Enhancement Features:
+- Lap time blending: 70% real data, 30% calculated simulation
+- Driver consistency adjustments based on historical performance
+- Team reliability factors from recent race data
+- Track-specific performance insights from Fast-F1 data
+
+Integration:
+- Extends models.base_race_model.RaceSimulator
+- Uses data.data_integration.RealDataEnhancer for data access
+- Called by app.py via create_enhanced_simulator() factory function
+
+Special Features:
+- Automatic fallback to base simulation if real data unavailable
+- Silent operation with suppressed Fast-F1 logging
+- Weighted performance adjustments maintain simulation variability
 """
 
 import random
+
 import numpy as np
+
 from dataclasses import dataclass
 from typing import List, Dict, Optional
 import logging
+
 from models.base_race_model import RaceSimulator, DriverRaceResult, RaceIncident, format_time
 
 logger = logging.getLogger(__name__)

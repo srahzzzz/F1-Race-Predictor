@@ -1,15 +1,38 @@
 """
-Formula 1 Race Prediction Simulator
-Main page
+app.py - Main Application Entry Point
+
+This is the primary entry point for the Formula 1 Race Prediction Simulator.
+The application orchestrates the complete simulation workflow from track selection
+through race execution to result display.
+
+Key Components:
+- Track selection interface (Qatar and Abu Dhabi only)
+- Race simulation orchestration with real F1 data integration
+- Result display: Qualifying, Race Results, Podium, and WDC standings
+- Championship tracking across multiple races
+
+Integration:
+- Uses data layer for drivers, teams, and tracks
+- Leverages simulation models for race prediction
+- Displays results via visualization utilities
+- Tracks championship standings across sessions
+
+Special Features:
+- Automatic weather generation based on track location
+- Qatar-specific result bias (Max, Lando, Piastri)
+- Silent Fast-F1 data loading with suppressed logging
 """
 
 import os
 import sys
+
 from tabulate import tabulate as tabulate_func
 
 # Setup comprehensive Fast-F1 logging suppression before any other imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'utils'))
+
 from ui_loading import setup_global_logging_suppression
+
 setup_global_logging_suppression()
 
 # Import our data models
@@ -24,7 +47,9 @@ from models.weather_model import generate_weather
 
 # Import visualization utilities
 from utils.race_visualization import (
-    display_qualifying_results, display_race_results, display_podium
+    display_qualifying_results,
+    display_race_results,
+    display_podium
 )
 from utils.ui_loading import loading_with_animation
 from utils.championship_tracker import ChampionshipTracker

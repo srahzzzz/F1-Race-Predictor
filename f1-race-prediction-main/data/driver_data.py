@@ -1,6 +1,29 @@
 """
-Module containing data for F1 2025 drivers with their attributes and statistics.
+driver_data.py - Driver Data Definitions and Attributes
+
+This module defines the Driver class and contains the complete roster of 2025
+Formula 1 drivers with their performance attributes and statistics.
+
+Key Components:
+- Driver class: Represents a Formula 1 driver with skill ratings
+- Driver attributes: Skill levels (dry, wet, overtaking), consistency, aggression
+- Complete 2025 F1 driver roster with realistic performance ratings
+- Helper functions to retrieve drivers by name, team, or all drivers
+
+Driver Attributes:
+- skill_dry: Performance in dry conditions (1-100 scale)
+- skill_wet: Performance in wet conditions (1-100 scale)
+- skill_overtaking: Overtaking ability rating (1-100)
+- consistency: Race consistency rating (1-100)
+- aggression: Driving style aggression level (1-100)
+- experience: Years of F1 experience
+
+Integration:
+- Used by simulation models to calculate driver performance
+- Referenced by app.py for race simulation setup
+- Enhanced by data_integration.py with real F1 performance data
 """
+
 
 class Driver:
     def __init__(self, name, team, number, nationality, age, experience, 
