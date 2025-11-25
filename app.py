@@ -6,7 +6,7 @@ The application orchestrates the complete simulation workflow from track selecti
 through race execution to result display.
 
 Key Components:
-- Track selection interface (Qatar and Abu Dhabi only)
+- Track selection interface (real time updated)
 - Race simulation orchestration with real F1 data integration
 - Result display: Qualifying, Race Results, Podium, and WDC standings
 - Championship tracking across multiple races
@@ -17,10 +17,7 @@ Integration:
 - Displays results via visualization utilities
 - Tracks championship standings across sessions
 
-Special Features:
-- Automatic weather generation based on track location
-- Qatar-specific result bias (Max, Lando, Piastri)
-- Silent Fast-F1 data loading with suppressed logging
+
 """
 
 import os

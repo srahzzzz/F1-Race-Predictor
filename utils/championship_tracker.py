@@ -8,14 +8,12 @@ and provides filtered views of the championship table.
 Key Components:
 - ChampionshipTracker class: Manages driver points and standings
 - add_race_results(): Updates championship points from race results
-- display_standings(): Shows filtered WDC table (Max, Lando, Piastri only)
-- Point boost system: Applies WDC bias to top 3 drivers
+- display_standings(): Shows filtered WDC table 
+- Point boost system
 
 Championship Features:
 - Cumulative point tracking across multiple races
-- Filtered display showing only Max Verstappen, Lando Norris, Oscar Piastri
-- WDC bias: Lando +15 points, Max +10 points, Piastri +5 points
-- Automatic ordering: Lando 1st, Max 2nd, Piastri 3rd in standings
+
 
 Integration:
 - Used by app.py to track and display championship after each race
