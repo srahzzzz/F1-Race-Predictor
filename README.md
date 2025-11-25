@@ -2,8 +2,6 @@
 
 This is a Formula 1 race simulation tool that combines **real F1 data** to predict race outcomes for the 2025 F1 season. The simulator integrates live Formula 1 telemetry data, driver performance statistics, and team analytics to provide highly realistic race predictions.
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
@@ -25,8 +23,6 @@ This simulator models complete F1 race weekends with qualifying sessions and ful
 
 ### Core Simulation Features
 
-
-
 - **Real F1 Data Enhancement**
   - Historical driver performance metrics from 2022-2024 seasons
   - Team reliability and car performance data
@@ -43,8 +39,72 @@ This simulator models complete F1 race weekends with qualifying sessions and ful
   - Podium finishers (top 3) with race name and year
   - Championship standings filtered to top contenders
 
+---
+
+## 🏁 Improvements (Planned)
+
+- Improve weather realism (dynamic conditions, track evolution)
+- Introduce tyre wear, pit strategies, and safety cars
+- Add constructor standings and enhanced championship tracking
+- Implement mechanical failures + DNF logic
+- Add simple UI/visualization for results
+- Explore ML-based performance prediction
+- Enable exporting race reports (CSV/PDF)
+
+---
+
+## 🔧 Installation
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/srahzzzz/F1-Race-Predictor.git
+cd F1-Race-Predictor
+```
+
+### Step 2: Create Virtual Environment (Recommended)
+
+**Windows (PowerShell):**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+**Windows (Command Prompt):**
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+**Linux/Mac:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Step 3: Install Dependencies
+
+Install all required packages using the dependencies file:
+```bash
+pip install -r dependencies.txt
+```
+
+Or install manually:
+```bash
+pip install numpy pandas matplotlib seaborn fastf1 tabulate colorama requests scipy
+```
+
+### Step 4: Run the Application
+
+```bash
+python app.py
+```
+
+**Note:** On first run, the application will automatically create a `cache/` directory and download Fast-F1 data. This may take a few minutes. Subsequent runs will be faster using cached data.
 
 ---
 
 
-**🏁 Enjoy simulating the 2025 F1 season! 🏁**
+**Created by Sarah Nauman**
+
+*Please reach me at sarahnauman15@gmail.com — unless it's about why Max keeps winning in my predictor (in that case please contact Red Bull instead 🏎️💔)*
