@@ -14,18 +14,12 @@ Key Components:
 Simulation Logic:
 - Qualifying: Calculates grid positions based on driver skill and car performance
 - Race: Simulates lap-by-lap performance with tire degradation and incidents
-- Max Verstappen bias: Significant performance boost reflecting WDC status
 - Incident simulation: Random events (DNFs, penalties, mechanical failures)
 
 Integration:
 - Extended by advanced_race_model.py for real data integration
 - Used by app.py to run complete race simulations
 - References driver_data, team_data, and track_data for attributes
-
-Special Features:
-- Strong Max Verstappen bias in qualifying (-2.5s) and race pace (-1.8s per lap)
-- Position boost ensuring Max finishes 1st if he completes the race
-- 70% reduction in incident probability for Max Verstappen
 """
 
 import random
@@ -150,16 +144,8 @@ class RaceSimulator:
             # Random factor (up to 0.3 seconds) - represents the unpredictability of qualifying
             random_factor = random.uniform(-0.2, 0.3)
             
-            # Max Verstappen bias - Current WDC gets MASSIVE performance boost
-            verstappen_bias = 0
-            if "Verstappen" in driver.name:
-                verstappen_bias = -2.5  # Makes him ~2.5 seconds faster (DOMINANT advantage)
-                # Also boost his skill rating for this calculation
-                driver_skill = min(100, driver_skill + 15)  # Boost skill by 15 points
-                driver_factor = 5 * (1 - (driver_skill / 100))
-            
             # Calculate lap time
-            lap_time = base_time + driver_factor + car_factor + track_specialization + weather_impact + random_factor + verstappen_bias
+            lap_time = base_time + driver_factor + car_factor + track_specialization + weather_impact + random_factor
             
             # Add some variation for the 3 qualifying laps
             q1_time = lap_time * random.uniform(1.001, 1.01)
@@ -201,16 +187,8 @@ class RaceSimulator:
         # Randomness factor (±0.2 seconds)
         random_factor = random.uniform(-0.2, 0.2)
         
-        # Max Verstappen bias - Current WDC gets MASSIVE performance boost
-        verstappen_bias = 0
-        if "Verstappen" in driver.name:
-            verstappen_bias = -1.8  # Makes him ~1.8 seconds faster per lap in race (DOMINANT)
-            # Also boost his skill rating for this calculation
-            driver_skill = min(100, driver_skill + 20)  # Boost skill by 20 points
-            driver_factor = 3 * (1 - (driver_skill / 100))
-        
         # Calculate lap time
-        lap_time = base_time + driver_factor + car_factor + weather_impact + random_factor + verstappen_bias
+        lap_time = base_time + driver_factor + car_factor + weather_impact + random_factor
         
         return lap_time
     
@@ -245,11 +223,6 @@ class RaceSimulator:
         # Aggressive drivers have more incidents
         aggression_factor = 1.0 + (driver.aggression / 100 * 0.8)
         
-        # Max Verstappen bias - Current WDC has lower incident chance (very consistent)
-        verstappen_incident_reduction = 1.0
-        if "Verstappen" in driver.name:
-            verstappen_incident_reduction = 0.3  # 70% reduction in incident chance
-        
         # Calculate incident chance for this lap
         incident_chance = (base_incident_chance * 
                           driver_incident_factor * 
@@ -258,8 +231,7 @@ class RaceSimulator:
                           first_lap_factor * 
                           last_lap_factor * 
                           exp_factor *
-                          aggression_factor *
-                          verstappen_incident_reduction)
+                          aggression_factor)
         
         # Safety cap to avoid unrealistic incident rates
         incident_chance = min(incident_chance, 0.15)  # Max 15% chance per lap
@@ -437,19 +409,6 @@ class RaceSimulator:
         
         # Combine the lists - active drivers (finished) followed by inactive (DNF)
         final_positions = active_drivers + inactive_drivers
-        
-        # Max Verstappen position boost - DOMINANT performance, ensure top finish
-        verstappen = None
-        for driver in active_drivers:
-            if "Verstappen" in driver.name:
-                verstappen = driver
-                break
-        
-        if verstappen and verstappen in active_drivers:
-            # Move Max to position 1 (he's the current WDC, should dominate)
-            active_drivers.remove(verstappen)
-            active_drivers.insert(0, verstappen)
-            final_positions = active_drivers + inactive_drivers
         
         # Create race results objects
         for position, driver in enumerate(final_positions, 1):

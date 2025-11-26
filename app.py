@@ -127,49 +127,6 @@ def run_race_simulation(track, weather_option):
     # Simulate race (silently)
     race_results = simulator.simulate_race()
     
-    # Apply Qatar-specific bias: Max, Lando, Piastri
-    if "Qatar" in track.name or "Losail" in track.name:
-        # Find the three drivers
-        max_verstappen = None
-        lando_norris = None
-        oscar_piastri = None
-        
-        for result in race_results:
-            if "Verstappen" in result.driver.name:
-                max_verstappen = result
-            elif "Norris" in result.driver.name:
-                lando_norris = result
-            elif "Piastri" in result.driver.name:
-                oscar_piastri = result
-        
-        # Reorder to Max 1st, Lando 2nd, Piastri 3rd (if they finished)
-        if max_verstappen and max_verstappen.status == "Finished":
-            race_results.remove(max_verstappen)
-            race_results.insert(0, max_verstappen)
-            max_verstappen.finishing_position = 1
-            max_verstappen.points = 25
-        
-        if lando_norris and lando_norris.status == "Finished":
-            race_results.remove(lando_norris)
-            # Insert after Max if he exists, otherwise at position 0
-            insert_pos = 1 if max_verstappen and max_verstappen.status == "Finished" else 0
-            race_results.insert(insert_pos, lando_norris)
-            lando_norris.finishing_position = 2
-            lando_norris.points = 18
-        
-        if oscar_piastri and oscar_piastri.status == "Finished":
-            race_results.remove(oscar_piastri)
-            # Insert after Lando
-            insert_pos = 2 if (max_verstappen and max_verstappen.status == "Finished" and 
-                              lando_norris and lando_norris.status == "Finished") else 1
-            race_results.insert(insert_pos, oscar_piastri)
-            oscar_piastri.finishing_position = 3
-            oscar_piastri.points = 15
-        
-        # Reassign positions for remaining drivers
-        for i, result in enumerate(race_results[3:], start=4):
-            result.finishing_position = i
-    
     # Display results
     display_qualifying_results(qualifying_results)
     display_race_results(race_results)
