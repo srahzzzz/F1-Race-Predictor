@@ -1,13 +1,13 @@
-# 🏎️ Formula 1 Race Prediction Simulator — 2025 Season
+# 🏎️ Formula 1 Race Predictor 2025
 
-This is a Formula 1 race simulation tool that combines **real F1 data** to predict race outcomes for the 2025 F1 season. The simulator integrates live Formula 1 telemetry data, driver performance statistics, and team analytics to provide highly realistic race predictions.
+This is a Formula 1 race simulation tool that combines **real F1 data** to predict race outcomes for the 2025 F1 season. The simulator integrates live Formula 1 telemetry data, driver performance statistics, and team analytics to provide realistic race predictions.
 
 
 ---
 
 ## ✨ Overview
 
-This simulator models complete F1 race weekends with qualifying sessions and full race simulations. It uses real Formula 1 data from the Fast-F1 API to enhance predictions, combining historical performance metrics.
+This simulator models complete F1 race weekends with qualifying sessions and full race simulations. It uses real Formula 1 data from the Fast-F1 API (a python package for accessing Formula 1 results, schedules, timing data and telemetry)
 
 ### Key Highlights
 
