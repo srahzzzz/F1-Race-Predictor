@@ -70,12 +70,6 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-**Windows (Command Prompt):**
-```cmd
-python -m venv .venv
-.venv\Scripts\activate.bat
-```
-
 **Linux/Mac:**
 ```bash
 python3 -m venv .venv
@@ -89,22 +83,12 @@ Install all required packages using the dependencies file:
 pip install -r dependencies.txt
 ```
 
-Or install manually:
-```bash
-pip install numpy pandas matplotlib seaborn fastf1 tabulate colorama requests scipy
-```
-
 ### Step 4: Run the Application
 
 ```bash
 python app.py
 ```
 
-**Note:** On first run, the application will automatically create a `cache/` directory and download Fast-F1 data. This may take a few minutes. Subsequent runs will be faster using cached data.
-
----
-
-
-**Created by Sarah Nauman**
+**Made by Sarah Nauman**
 
 *Please reach me at sarahnauman15@gmail.com — unless it's about why Max keeps winning in my predictor (in that case please contact Red Bull instead 🏎️💔)*
